@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Tour of Heroes';
+  titulo = 'Tour of Heroes';
+  itensMenu: {caminho: string, texto: string}[] = [
+    {caminho: '/dashboard', texto: 'Dashboard'},
+    {caminho: '/heroes', texto: 'Herois'}
+  ];
 }
