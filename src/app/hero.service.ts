@@ -3,6 +3,7 @@ import {HEROES} from './mock-heroes';
 import {Observable, of} from 'rxjs';
 import {Hero} from './hero.model';
 import {MessageService} from './message.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import {MessageService} from './message.service';
 export class HeroService {
   private heroes = HEROES;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService,
+              private http: HttpClient) { }
 
   getHeroes(): Observable<Hero[]> {
     this.messageService.add('HeroService: obtida lista de herois');
