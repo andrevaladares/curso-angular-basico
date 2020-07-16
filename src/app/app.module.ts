@@ -32,7 +32,7 @@ import {InMemoryDataService} from './in-memory-data.service';
     RouterModule,
     NgbModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {delay: 2000})
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {delay: 500})
   ],
   providers: [],
   bootstrap: [AppComponent]
