@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Hero} from '../hero.model';
 import {HEROES} from '../mock-heroes';
 import {HeroService} from '../hero.service';
-import {MessageService} from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -27,6 +26,14 @@ export class HeroesComponent implements OnInit {
     this.heroService.addHero({name} as Hero).subscribe(hero => {
       if (hero) {
         this.heroes.push(hero);
+      }
+    });
+  }
+
+  delete(hero: Hero) {
+    this.heroService.deleteHero(hero).subscribe(response => {
+      if (typeof response !== 'undefined') {
+        this.heroes = this.heroes.filter(heroItem => heroItem !== hero);
       }
     });
   }
