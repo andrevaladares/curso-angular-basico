@@ -3,10 +3,13 @@
   <div class="col">
     <app-hero-add (add)="onAdd($event)"></app-hero-add>
   </div>
+  <div class="col">
+    <app-search-input (search)="onFilter($event)"></app-search-input>
+  </div>
 </div>
 <ul class="list-group mb-3">
   <li class="list-group-item"
-      *ngFor="let hero of heroes"
+      *ngFor="let hero of heroes | heroFilter : filter"
   >
     <div class="d-flex">
       <div class="p-2">

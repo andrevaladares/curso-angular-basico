@@ -11,6 +11,7 @@ import {HeroService} from '../hero.service';
 export class HeroesComponent implements OnInit {
 
   heroes = HEROES;
+  filter = '';
 
   constructor(private heroService: HeroService) { }
 
@@ -36,5 +37,10 @@ export class HeroesComponent implements OnInit {
         this.heroes = this.heroes.filter(heroItem => heroItem !== hero);
       }
     });
+  }
+
+  onFilter(term: string) {
+    console.log(term);
+    this.filter = term;
   }
 }
