@@ -11,4 +11,12 @@ export class AppComponent {
     {caminho: '/dashboard', texto: 'Dashboard'},
     {caminho: '/heroes', texto: 'Herois'}
   ];
+
+  constructor() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      const randomToken = Math.random().toString(36).substr(-10);
+      localStorage.setItem('token', randomToken);
+    }
+  }
 }
