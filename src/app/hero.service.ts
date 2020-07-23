@@ -5,6 +5,7 @@ import {MessageService} from './message.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {catchError, tap} from 'rxjs/operators';
+import {AlertType} from './alert.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,14 +40,14 @@ export class HeroService {
   updateHero(hero: Hero): Observable<Hero> {
     const url = `${this.heroesUrl}/${hero.id}`;
     return this.http.put<Hero>(url, hero, this.httpOptions).pipe(
-      tap(() => this.log(`atualizado hero id=${hero.id}.`)),
+      tap(() => this.log(`atualizado hero id=${hero.id}.`, AlertType.success)),
       catchError(this.handleError<Hero>('updateHero'))
     );
   }
 
     addHero(hero: Hero): Observable<Hero> {
       return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-        tap((newHero) => this.log(`adicionado hero id=${newHero.id}.`)),
+        tap((newHero) => this.log(`adicionado hero id=${newHero.id}.`, AlertType.success)),
         catchError(this.handleError<Hero>('addHero'))
       );
   }
@@ -55,7 +56,7 @@ export class HeroService {
   deleteHero(hero: Hero): Observable<any> {
     const url = `${this.heroesUrl}/${hero.id}`;
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
-      tap(() => this.log(`apagado hero id=${hero.id}.`)),
+      tap(() => this.log(`apagado hero id=${hero.id}.`, AlertType.success)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
@@ -69,21 +70,21 @@ export class HeroService {
       tap((heroes) => {
         heroes && heroes.length
           ? this.log(`Encontrado termo= ${term} e ${heroes.length} herois`)
-          : this.log(`Não encontrado para o termo= ${term}`);
+          : this.log(`Não encontrado para o termo= ${term}`, AlertType.warning);
       }),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
   );
   }
 
-  private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+  private log(message: string, type = AlertType.info) {
+    this.messageService.add({message: `HeroService: ${message}`, type});
 
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed: ${error.message}`, AlertType.danger);
 
       return of(result);
     };

@@ -4,7 +4,7 @@
     <app-hero-add (add)="onAdd($event)"></app-hero-add>
   </div>
   <div class="col">
-    <app-search-input (search)="onFilter($event)"></app-search-input>
+    <app-search-input (search)="onFilter($event)" [label]="'Filtrar'"></app-search-input>
   </div>
 </div>
 <ul class="list-group mb-3">

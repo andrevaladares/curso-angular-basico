@@ -8,7 +8,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -39,7 +39,8 @@ import {environment} from '../environments/environment';
     FormsModule,
     AppRoutingModule,
     RouterModule,
-    NgbModule,
+    NgbAlertModule,
+    NgbCollapseModule,
     HttpClientModule,
     environment.production
       ? []

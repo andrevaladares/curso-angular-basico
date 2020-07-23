@@ -5,10 +5,10 @@
     Clear
   </button>
 
-  <div *ngFor="let message of messageService.getMessages()">
-    <div class="alert alert-success" role="alert">
-      {{ message }}
-    </div>
+  <div *ngFor="let alert of messageService.getMessages()">
+    <ngb-alert [type]="alert.type" (close)="close(alert)">
+      {{ alert.message }}
+    </ngb-alert>
   </div>
 
 </div>
